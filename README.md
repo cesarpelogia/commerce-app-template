@@ -1,135 +1,64 @@
-# Turborepo starter
+# 🛒 E-commerce Turborepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+> Sistema de e-commerce moderno construído com Turborepo, Next.js, TypeScript e Docker
 
-## Using this example
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.4.2-black)](https://nextjs.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green)](https://spring.io/projects/spring-boot)
+[![Turborepo](https://img.shields.io/badge/Turborepo-2.5.5-red)](https://turbo.build/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue)](https://docs.docker.com/compose/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)](https://www.postgresql.org/)
 
-Run the following command:
+## 🚀 Sobre o Projeto
 
-```sh
-npx create-turbo@latest
-```
+Monorepo completo para sistema de e-commerce com múltiplas aplicações frontend, API backend e infraestrutura containerizada. Desenvolvido com as melhores práticas de desenvolvimento moderno.
 
-## What's inside?
+## 🏗️ Arquitetura
 
-This Turborepo includes the following packages/apps:
+### 📦 Aplicações (`apps/`)
+- **`web`** - Loja principal (Next.js)
+- **`admin`** - Painel administrativo (Next.js)
+- **`store`** - Interface da loja (Next.js)
+- **`docs`** - Documentação (Next.js)
+- **`api`** - API Backend (Java/Spring Boot)
 
-### Apps and Packages
+### 🔧 Pacotes Compartilhados (`packages/`)
+- **`@repo/ui`** - Biblioteca de componentes React
+- **`@repo/eslint-config`** - Configurações ESLint
+- **`@repo/typescript-config`** - Configurações TypeScript
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### 🐳 Infraestrutura
+- **PostgreSQL 15** - Banco de dados principal
+- **Redis 7** - Cache e sessões
+- **Adminer** - Interface web do banco
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🛠️ Tecnologias
 
-### Utilities
+### Frontend
+- **Next.js 15** - Framework React
+- **TypeScript** - Tipagem estática
+- **React 19** - Biblioteca de interface
 
-This Turborepo has some additional tools already setup for you:
+### Backend
+- **Java 17+** - Linguagem de programação
+- **Spring Boot 3.2** - Framework Java
+- **PostgreSQL** - Banco relacional
+- **Redis** - Cache em memória
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+### DevOps
+- **Docker & Docker Compose** - Containerização
+- **Turborepo** - Gerenciamento monorepo
+- **ESLint** - Linting de código
 
-### Build
+## 🚀 Quick Start
 
-To build all apps and packages, run the following command:
+### Pré-requisitos
+- Node.js 18+
+- Java 17+
+- Docker & Docker Compose
+- npm 10.8.2+
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+### 1. Clone o repositório
+```bash
+git clone https://github.com/[seu-usuario]/ecommerce-turborepo.git
+cd ecommerce-turborepo
