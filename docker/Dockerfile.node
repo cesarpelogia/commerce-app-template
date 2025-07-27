@@ -1,0 +1,38 @@
+# Etapa base com Node.js
+FROM node:20-alpine AS base
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
+
+# Copia os arquivos de configuração do monorepo
+COPY package*.json turbo.json ./
+COPY packages/ ./packages/
+
+# Instala apenas as dependências de produção
+FROM base AS deps
+RUN npm ci --only=production
+
+# Etapa de build geral
+FROM base AS builder
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Build do app "web"
+FROM base AS web
+COPY --from=builder /app /app
+RUN npx turbo build --filter=web
+EXPOSE 3000
+CMD ["npm", "run", "start", "--workspace=web"]
+
+# Build do app "docs"
+FROM base AS docs
+COPY --from=builder /app /app
+RUN npx turbo build --filter=docs
+EXPOSE 3001
+CMD ["npm", "run", "start", "--workspace=docs"]
+
+# Build do app "admin"
+FROM base AS admin
+COPY --from=builder /app /app
+RUN npx turbo build --filter=admin
+EXPOSE 3002
+CMD ["npm", "run", "start", "--workspace=admin"]
