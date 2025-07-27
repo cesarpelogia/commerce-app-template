@@ -13,7 +13,7 @@ services:
       - ecommerce-network
 
   postgres:
-    image: postgres:15-alpine
+    image: postgres:14.6-alpine
     container_name: ecommerce-db
     restart: unless-stopped
     ports:
