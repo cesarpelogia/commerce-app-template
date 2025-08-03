@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,6 +23,24 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
+}
+
+/* Melhorias de responsividade para mobile */
+@media (max-width: 640px) {
+  .recharts-responsive-container {
+    min-height: 300px !important;
+  }
+  
+  /* Evita quebra de layout em textos longos */
+  .text-wrap {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Melhora espaçamento em containers pequenos */
+  .mobile-spacing {
+    padding: 0.75rem !important;
+  }
 }
 
 * {
@@ -48,3 +70,4 @@ a {
     display: unset;
   }
 }
+
