@@ -1,8 +1,9 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": ["node", "react", "react-dom"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src", "components", "hooks", "lib", "types"],
+  "exclude": ["node_modules", "dist", "jest.config.*", "**/*.bak/**"]
 }
