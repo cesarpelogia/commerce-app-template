@@ -63,3 +63,28 @@ Monorepo para um sistema de e-commerce. A estrutura de frontend e infraestrutura
 ```bash
 git clone https://github.com/[seu-usuario]/ecommerce-turborepo.git
 cd ecommerce-turborepo
+
+### 2. Configurar segredos locais
+
+```bash
+cp .env.example .env
+```
+
+Preencha no `.env` as credenciais de `POSTGRES_USER`, `POSTGRES_PASSWORD` e `REDIS_PASSWORD`. O arquivo `.env` nunca deve ser commitado.
+
+### 3. Subir a aplicação
+
+```bash
+docker compose up --build -d
+```
+
+O backend executa as migrações Flyway automaticamente na inicialização. Se você já criou o volume do banco com a versão antiga do projeto, faça um reset apenas em desenvolvimento, pois ele apaga os dados locais:
+
+```bash
+docker compose down -v
+docker compose up --build -d
+```
+
+### 4. Criar uma migração
+
+Adicione novos arquivos SQL em `apps/template/src/main/resources/db/migration` usando o padrão `V2__descricao.sql`, `V3__descricao.sql` e assim por diante. Não altere uma migração que já foi executada; crie uma nova versão.
