@@ -29,10 +29,3 @@ COPY --from=builder /app /app
 RUN npx turbo build --filter=docs
 EXPOSE 3001
 CMD ["npm", "run", "start", "--workspace=docs"]
-
-# Build do app "admin"
-FROM base AS admin
-COPY --from=builder /app /app
-RUN npx turbo build --filter=admin
-EXPOSE 3002
-CMD ["npm", "run", "start", "--workspace=admin"]
